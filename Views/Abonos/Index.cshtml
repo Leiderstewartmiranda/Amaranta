@@ -1,0 +1,50 @@
+﻿@model IEnumerable<AMARANTA.Models.Abono>
+
+@{
+    ViewData["Title"] = "Abonos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Abonos</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Crear Abono</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Fecha del Abono
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Abonado)
+            </th>
+            <th>
+                Usuario
+            </th>
+            <th>
+                Acciones
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaAbono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Abonado)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.IdUsuarioNavigation.Nombre)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.CodigoAbono" class="btn btn-warning"><i class="bi bi-pencil"></i></a> 
+                    <a asp-action="Details" asp-route-id="@item.CodigoAbono" class="btn btn-info"><i class="bi bi-eye"></i></a> 
+                    <a asp-action="Delete" asp-route-id="@item.CodigoAbono" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

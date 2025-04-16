@@ -1,0 +1,42 @@
+﻿@model AMARANTA.Models.Abono
+
+@{
+    ViewData["Title"] = "Crear_Abono";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Crear Abono</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mb-2">
+                <label asp-for="FechaAbono" class="control-label">Fecha del Abono</label>
+                <input asp-for="FechaAbono" class="form-control" />
+                <span asp-validation-for="FechaAbono" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Abonado" class="control-label"></label>
+                <input asp-for="Abonado" class="form-control" />
+                <span asp-validation-for="Abonado" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="IdUsuario" class="control-label">Usuario</label>
+                <select asp-for="IdUsuario" class ="form-control" asp-items="ViewBag.IdUsuario"></select>
+            </div>
+            <div class="form-group mb-3">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary">Regresar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

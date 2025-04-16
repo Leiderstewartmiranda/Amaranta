@@ -1,0 +1,126 @@
+﻿@model AMARANTA.Models.Pedido
+
+@{
+    ViewData["Title"] = "Crear_Pedido";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Crear Pedido</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form id="Formulario">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           @*  <div class="form-group mb-2">
+                <label asp-for="FechaPedido" class="control-label">Fecha del Pedido</label>
+                <input asp-for="FechaPedido" class="form-control" />
+                <span asp-validation-for="FechaPedido" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="PrecioTotal" class="control-label">Precio Total</label>
+                <input asp-for="PrecioTotal" class="form-control" />
+                <span asp-validation-for="PrecioTotal" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Estado" class="control-label"></label>
+                <input asp-for="Estado" class="form-control" />
+                <span asp-validation-for="Estado" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="IdUsuario" class="control-label">Usuario</label>
+                <select asp-for="IdUsuario" class ="form-control" asp-items="ViewBag.IdUsuario"></select>
+            </div> *@
+            <div class="form-group mb-3">
+                <label asp-for="IdCliente" class="control-label">Cliente</label>
+                <select asp-for="IdCliente" id="Cliente" class ="form-control" asp-items="ViewBag.IdCliente"></select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="CodigoProducto" class="control-label">Productos</label>
+                <select for="CodigoProducto" id="Producto" class="form-control" asp-items="ViewBag.CodigoProducto"></select>
+            </div>
+            <div class="form-group mb-2">
+                <label for="Cantidad" class="control-label">Cantidad</label>
+                <input for="Cantidad" type="number" id="Cantidad" class="form-control" />
+            </div>
+            <div class="form-group mb-3">
+                <input type="button" value="Agregar" id="btn_agregar" class="btn btn-success" />
+            </div>
+            <div class="form-group mb-3">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+
+        </form>
+            <div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Codigo Producto</th>
+                        <th>Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody id="content">
+                    
+
+                </tbody>
+            </table>
+            </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary">Regresar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script>
+    let listaProductos=[]
+    let content = document.getElementById("content");
+    let btnAgregar = document.getElementById("btn_agregar");
+
+    btnAgregar.addEventListener("click", e => {
+        let Producto = document.getElementById("Producto");
+        let Cantidad = document.getElementById("Cantidad");
+        console.log(Producto.children);
+        let productoSeleccionado = parseInt(Producto.value);
+        let cantidadSeleccionada = parseInt(Cantidad.value);
+        
+        const product={
+            Nombre:Producto.options[Producto.selectedIndex].text,
+            CodigoProducto: productoSeleccionado,
+            Cantidad: cantidadSeleccionada
+        }
+       
+        listaProductos.push(product);
+
+        llenarTabla();
+
+        // Limpiar los campos después de agregar
+        Producto.value = 1;
+        Cantidad.value = "";
+
+        console.log(listaProductos);
+        
+    })
+    const llenarTabla = ()=> {
+        content.innerHTML = "";
+        listaProductos.forEach((producto, index) => {
+            content.innerHTML += `<tr>
+                <td>${producto.Nombre}</td>
+                <td>${producto.Cantidad}</td>
+            </tr>`;
+        });
+    }
+
+    const EnviarDatos = () => {
+        let form = document.querySelector("Formulario");
+        form.addEventListener("submit", e => {
+            e.preventDefault();
+            
+        });
+    }
+</script>

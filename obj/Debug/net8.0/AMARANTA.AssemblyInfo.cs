@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AMARANTA")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dafaaf878cbff36286efbe4b618412bed19c3885")]
 [assembly: System.Reflection.AssemblyProductAttribute("AMARANTA")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AMARANTA")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,0 +1,73 @@
+﻿@model IEnumerable<AMARANTA.Models.Pedido>
+
+@{
+    ViewData["Title"] = "Pedidos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Pedido</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Crear Pedido</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                Codigo
+            </th>
+            <th>
+                Cliente
+            </th>
+            <th>
+                Total
+            </th>
+            <th>
+                Fecha
+            </th>
+            <th>
+                Estado
+            </th>
+            <th>
+                Abonos
+            </th>
+            <th>
+                Detalles
+            </th>
+            <th>
+                Anular
+            </th>
+           
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoPedido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdClienteNavigation.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaPedido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CodigoPedido" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CodigoPedido" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
+            </td>
+            <td>
+                    <a asp-action="Delete" asp-route-id="@item.CodigoPedido" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

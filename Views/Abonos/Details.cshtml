@@ -1,0 +1,37 @@
+﻿@model AMARANTA.Models.Abono
+
+@{
+    ViewData["Title"] = "Detalles_Abono";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Abono</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FechaAbono)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FechaAbono)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Abonado)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Abonado)
+        </dd>
+        <dt class = "col-sm-2">
+            Usuario
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdUsuarioNavigation.IdUsuario)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.CodigoAbono">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
